@@ -1,12 +1,13 @@
-#include "quick.h"
 #include "global.h"
+#include "quick.h"
+#include "keep.h"
 
 const int BIOMETAL_PIN  = 5;
 
 Quick QUICK = Quick(BIOMETAL_PIN);
+Keep KEEP = Keep(BIOMETAL_PIN);
 
 void setup() {
-  // シリアル通信開始
   Serial.begin(9600);
   pinMode(RELAY_PIN, OUTPUT);
   pinMode(BIOMETAL_PIN, OUTPUT);
@@ -21,16 +22,13 @@ void updateMain() {
   if (Serial.available() > 0) {
     int recieved_value = inputSerial();
     QUICK.update(recieved_value);
+//    KEEP.update(recieved_value);
   }
 }
 
 void loop() {
   updateMain();
-//  if (Serial.available() > 0) {
-//    int recieved_value = inputSerial();
-//    keep(recieved_value);
-//  }
   QUICK.sequence();
+//  KEEP.sequence();
 }
-
 
