@@ -1,11 +1,13 @@
 #include "global.h"
 #include "quick.h"
 #include "keep.h"
+#include "onTimeOnce.h"
 
 const int BIOMETAL_PIN  = 5;
 
 Quick QUICK = Quick(BIOMETAL_PIN);
 Keep KEEP = Keep(BIOMETAL_PIN);
+onTimeOnce ON_TIME_ONCE = onTimeOnce(BIOMETAL_PIN);
 
 void setup() {
   Serial.begin(9600);
@@ -21,14 +23,16 @@ void setup() {
 void updateMain() {
   if (Serial.available() > 0) {
     int recieved_value = inputSerial();
-    QUICK.update(recieved_value);
+//    QUICK.update(recieved_value);
 //    KEEP.update(recieved_value);
+    ON_TIME_ONCE.update(recieved_value);
   }
 }
 
 void loop() {
   updateMain();
-  QUICK.sequence();
+//  QUICK.sequence();
 //  KEEP.sequence();
+  ON_TIME_ONCE.sequence();
 }
 
