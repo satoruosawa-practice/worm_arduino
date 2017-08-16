@@ -1,11 +1,13 @@
 #include "global.h"
 #include "checkMotion.h"
+#include "rotation.h"
 
 const int BIOMETAL_PIN1 = 5;
 const int BIOMETAL_PIN2 = 6;
 const int BIOMETAL_PIN3 = 3;
 
 CheckMotion CHECK_MOTION = CheckMotion(BIOMETAL_PIN1, BIOMETAL_PIN2, BIOMETAL_PIN3);
+Rotation ROTATION = Rotation(BIOMETAL_PIN1, BIOMETAL_PIN2, BIOMETAL_PIN3);
 
 void setup() {
   Serial.begin(9600);
@@ -25,12 +27,14 @@ void setup() {
 void updateMain() {
   if (Serial.available() > 0) {
     int recieved_value = inputSerial();
-    CHECK_MOTION.update(recieved_value);
+//    CHECK_MOTION.update(recieved_value);
+    ROTATION.update(recieved_value);
   }
 }
 
 void loop() {
   updateMain();
-  CHECK_MOTION.sequence();
+//  CHECK_MOTION.sequence();
+  ROTATION.sequence();
 }
 
