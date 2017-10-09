@@ -1,9 +1,10 @@
 #include "Arduino.h"
+#include "global.h"
 #pragma once
 
 class Biometal {
  public:
-  Biometal();
+  Biometal(int pin);
   void setupBio();
   void updateBio(long diff);
   void setPwm(int value, long last_diff);
@@ -14,15 +15,17 @@ class Biometal {
   int pwm() {
     return pwm_;
   }
- 
+
  private:
+  int pin_;
   long heat_param_;
   long heat_param_limit_;
   int pwm_;
   int pwm_keep_;
 };
 
-Biometal::Biometal() {
+Biometal::Biometal(int pin) {
+  pin_ = pin;
   heat_param_ = 0l;
   pwm_keep_ = 20;
   heat_param_limit_ = 70l * 1000l * long(255 - pwm_keep_);
@@ -30,7 +33,8 @@ Biometal::Biometal() {
 }
 
 void Biometal::setupBio() {
-  
+  pinMode(pin_, OUTPUT);
+  analogWrite(pin_, OFF_VALUE);
 }
 
 void Biometal::updateBio(long diff) {
@@ -47,6 +51,7 @@ void Biometal::setPwm(int value, long last_diff) {
   } else {
     pwm_ = value;
   }
+  analogWrite(pin_, 255 - pwm_);
 }
 
 void Biometal::setDeg(int deg_target, long last_diff) {
