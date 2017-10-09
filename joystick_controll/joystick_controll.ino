@@ -2,8 +2,8 @@
 #include "tick.h"
 #include "biometal.h"
 
-const int JOYSTIC_X = 1;
-const int JOYSTIC_Y = 2;
+const int JOYSTIC_X = 0;
+const int JOYSTIC_Y = 1;
 const int RELAY_PIN = 9;
 
 const int BIOMETAL_PIN1 = 5;
@@ -38,19 +38,26 @@ void loop() {
   BIOMETAL.updateBio(TICK.diffMicros());
 
   int joystic_x = analogRead(JOYSTIC_X);
+  int joystic_y = analogRead(JOYSTIC_Y);
 
-//  joystic_x = map(joystic_x, 500, 1020, 0, 255);
-//  joystic_x = constrain(joystic_x, 0, 255);
-//  BIOMETAL.setPwm(joystic_x, TICK.diffMicros());
+  joystic_x = map(joystic_x, 500, 1020, 0, 255);
+  joystic_x = constrain(joystic_x, 0, 255);
+  joystic_x = ease_in_cubic(joystic_x, 0, 255, 255);
+  joystic_y = map(joystic_y, 500, 1020, 0, 50);
+  joystic_y = constrain(joystic_y, 0, 50);
+  joystic_y = ease_in_cubic(joystic_y, 0, 50, 50);
+  BIOMETAL.setPwm(joystic_x + joystic_y, TICK.diffMicros());
 
-  joystic_x = map(joystic_x, 500, 1020, 0, 70);
-  joystic_x = constrain(joystic_x, 0, 70);
-  BIOMETAL.setDeg(joystic_x, TICK.diffMicros());
+//  joystic_x = map(joystic_x, 500, 1020, 0, 70);
+//  joystic_x = constrain(joystic_x, 0, 70);
+//  BIOMETAL.setDeg(joystic_x, TICK.diffMicros());
 
   analogWrite(BIOMETAL_PIN1, 255 - BIOMETAL.pwm());
 
-  Serial.print("joy:");
+  Serial.print("joyx:");
   Serial.print(joystic_x);
+  Serial.print("joyy:");
+  Serial.print(joystic_y);
   Serial.print("  heatParam:");
   Serial.print(BIOMETAL.heatParam());
   Serial.print("  pwm:");
@@ -60,4 +67,5 @@ void loop() {
   Serial.print("  diff:");
   Serial.println(TICK.diffMicros());
 }
+
 

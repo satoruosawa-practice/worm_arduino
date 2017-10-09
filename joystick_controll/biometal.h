@@ -53,10 +53,6 @@ void Biometal::setDeg(int deg_target, long last_diff) {
   int deg = int(heat_param_ / (1000l * 255l));
   int deg_diff = deg_target - deg;
   int pwm = map(deg_diff, 5, 70, pwm_keep_, 550);
-  
-//  Serial.println(heat_param_diff);
-  Serial.println(deg_diff);
-
   pwm = constrain(int(pwm), 0, 255);
   setPwm(pwm, last_diff);
 }
