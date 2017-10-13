@@ -8,8 +8,8 @@ const int SENSOR_PIN = 2;
 const int RELAY_PIN = 9;
 
 const int BIOMETAL_PIN1 = 3;
-const int BIOMETAL_PIN2A = 5;
-const int BIOMETAL_PIN2B = 6;
+const int BIOMETAL_PIN2A = 6;
+const int BIOMETAL_PIN2B = 5;
 const int BIOMETAL_PIN2C = 10;
 
 
