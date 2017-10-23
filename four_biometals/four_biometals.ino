@@ -1,5 +1,5 @@
 #include "global.h"
-#include "tick.h"
+#include "ticker.h"
 #include "biometalContainer.h"
 #include "scene.h"
 
@@ -23,18 +23,11 @@ void setup() {
 void loop() {
   TICKER->updateTicker();
   BIOMETAL_CONTAINER->updateBio(TICKER->deltaMicros());
-  SCENE->scequence();
-//  BIOMETAL1.updateBio(TICK.deltaMicros());
+  SCENE->sequence();
 
-//  int sensor = analogRead(SENSOR_PIN);
-//  sensor = map(sensor, 20, 800, 0, 255);
-//  sensor = constrain(sensor, 0, 255);
-//  sensor = ease_in_cubic(sensor, 0, 255, 255);
-//  BIOMETAL1.setPwm(sensor, TICK.deltaMicros());
-
-//  sensor = map(sensor, 20, 800, 0, 70);
-//  sensor = constrain(sensor, 0, 70);
-//  sensor = ease_in_cubic(sensor, 0, 70, 70);
-//  BIOMETAL1.setDeg(sensor, TICK.deltaMicros());
+  int sensor = analogRead(2);
+  if (sensor > 500) {
+     TICKER->setupTicker();
+  }
 }
 

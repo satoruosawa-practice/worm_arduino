@@ -21,10 +21,10 @@ class BiometalContainer {
 
 BiometalContainer::BiometalContainer() {
   length_ = 4;
-  biometals_[0] = new Biometal(3);
-  biometals_[1] = new Biometal(6);
-  biometals_[2] = new Biometal(5);
-  biometals_[3] = new Biometal(10);
+  biometals_[0] = new Biometal(6);
+  biometals_[1] = new Biometal(10);
+  biometals_[2] = new Biometal(3);
+  biometals_[3] = new Biometal(5);
 }
 
 void BiometalContainer::setupBio() {

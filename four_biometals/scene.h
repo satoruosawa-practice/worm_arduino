@@ -8,43 +8,36 @@
 class Scene {
  public:
   Scene(Ticker &ticker, BiometalContainer &biometals);
-  void scequence();
+  void sequence();
 
  private:
   bool que(long from, long to);
+  void setBiometals(int value1, int value2, int value3, int value4);
+  void setBio(int index, int value);
   BiometalContainer * biometals_;
   Ticker * ticker_;
-  long scequence_time_;
+  long sequence_time_;
   long start_time_;
 };
 
 Scene::Scene(Ticker &ticker, BiometalContainer &biometals) {
   ticker_ = &ticker;
   biometals_ = &biometals;
-  scequence_time_ = 0l;
+  sequence_time_ = 0l;
   start_time_ = ticker_->ellapsedMicros();
 }
 
-void Scene::scequence() {
-//  Serial.print("time: ");
-//  Serial.print(ticker_->ellapsedMicros());
-//  Serial.print("heat: ");
-//  Serial.print(biometals_->get(0)->heatParam());
-//  Serial.print("pwm: ");
-//  Serial.println(biometals_->get(0)->pwm());
-  if(que(2000000l, 3000000l)) {
-    biometals_->get(0)->setDeg(70, ticker_->deltaMicros());
+void Scene::sequence() {
+  if(que(0l, 3000000l)) {
+    setBiometals(70, 0, 0, 0);
   } else if(que(3000000l, 4000000l)) {
-    biometals_->get(1)->setDeg(70, ticker_->deltaMicros());
+    setBiometals(0, 70, 0, 0);
   } else if(que(4000000l, 5000000l)) {
-    biometals_->get(2)->setDeg(70, ticker_->deltaMicros());
+    setBiometals(0, 0, 70, 0);
   } else if(que(5000000l, 6000000l)) {
-    biometals_->get(3)->setDeg(70, ticker_->deltaMicros());
+    setBiometals(0, 0, 0, 70);
   } else {
-    biometals_->get(0)->setDeg(0, ticker_->deltaMicros());
-    biometals_->get(1)->setDeg(0, ticker_->deltaMicros());
-    biometals_->get(2)->setDeg(0, ticker_->deltaMicros());
-    biometals_->get(3)->setDeg(0, ticker_->deltaMicros());
+    setBiometals(0, 0, 0, 0);
   }
 }
 
@@ -57,16 +50,14 @@ bool Scene::que(long from, long to) {
   }
 }
 
-//bool Scene::que(long que_time) {
-////  Serial.println(que_time);
-////  Serial.println(ticker_.ellapsedMicros());
-//
-//  if(que_time < ticker_->ellapsedMicros() - start_time_ && 
-//     scequence_time_ < que_time) {
-//    scequence_time_ = que_time;
-//    return true;
-//  } else {
-//    return false;
-//  }
-//}
+void Scene::setBiometals(int value1, int value2, int value3, int value4) {
+  biometals_->get(0)->setDeg(value1, ticker_->deltaMicros());
+  biometals_->get(1)->setDeg(value2, ticker_->deltaMicros());
+  biometals_->get(2)->setDeg(value3, ticker_->deltaMicros());
+  biometals_->get(3)->setDeg(value4, ticker_->deltaMicros());
+}
+
+void Scene::setBio(int index, int value) {
+  biometals_->get(index)->setDeg(value, ticker_->deltaMicros());
+}
 
