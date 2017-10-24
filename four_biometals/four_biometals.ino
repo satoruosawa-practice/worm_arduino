@@ -13,7 +13,7 @@ void setup() {
   pinMode(RELAY_PIN, OUTPUT);
   digitalWrite(RELAY_PIN, LOW);
   BIOMETAL_CONTAINER->setupBio();
-  Serial.begin(115200);
+//  Serial.begin(115200);
  
   delay(50);
   digitalWrite(RELAY_PIN, HIGH);

@@ -12,6 +12,10 @@ class Ticker {
   long ellapsedMicros() {
     return is_micros_ - start_micros_;
   }
+  long ellapsedMillis() {
+    return (is_micros_ - start_micros_) / 1000l;
+  }
+
 
  private:
   long start_micros_;
@@ -26,7 +30,7 @@ Ticker::Ticker() {
 }
 
 void Ticker::setupTicker() {
-    start_micros_ = micros();
+  start_micros_ = micros();
 }
 
 void Ticker::updateTicker() {
