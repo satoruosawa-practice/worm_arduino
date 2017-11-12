@@ -167,15 +167,6 @@ bool Scene::queMillis(long from, long to) {
   }
 }
 
-
-void Scene::setBiometals(int value1, int value2, int value3, int value4) {
-  biometals_->get(0)->setDeg(value1, ticker_->deltaMicros());
-  biometals_->get(1)->setDeg(value2, ticker_->deltaMicros());
-  biometals_->get(2)->setDeg(value3, ticker_->deltaMicros());
-  biometals_->get(3)->setDeg(value4, ticker_->deltaMicros());
-}
-
 void Scene::setBio(int index, int value) {
   biometals_->get(index)->setDeg(value, ticker_->deltaMicros());
 }
-
