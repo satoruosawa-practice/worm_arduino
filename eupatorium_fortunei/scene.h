@@ -9,164 +9,241 @@ class Scene {
  public:
   Scene(Ticker &ticker, BiometalContainer &biometals);
   void sequence();
+  void reset();
 
  private:
-  bool queMicros(long from, long to);
-  bool queMillis(long from, long to);
-  void setBiometals(int value1, int value2, int value3, int value4);
-  void setBio(int index, int value);
+  void setBio(int index, int value) {
+    biometals_->get(index)->setDeg(value, ticker_->deltaMicros());
+  }
   BiometalContainer * biometals_;
   Ticker * ticker_;
-  long sequence_time_;
-  long start_time_;
+  int * sequence_no_;
 };
 
 Scene::Scene(Ticker &ticker, BiometalContainer &biometals) {
   ticker_ = &ticker;
   biometals_ = &biometals;
-  sequence_time_ = 0l;
-  start_time_ = ticker_->ellapsedMicros();
+  sequence_no_ = new int[biometals_->size()];
+  this->reset();
+}
+
+void Scene::reset() {
+  for (int i = 0; i < biometals_->size(); i++) {
+    sequence_no_ [i] = 0;
+  }
 }
 
 void Scene::sequence() {
+  long now = ticker_->ellapsedMillis();
   // 0
-  if(queMillis(0l, 3000l)) {
-    setBio(0, 70);
-  } else if(queMillis(3000l, 3000l)) {
-    setBio(0, 0);
-  } else if(queMillis(5000l, 5500l)) {
-    setBio(0, 70);
-  } else if(queMillis(6000l, 8000l)) {
-    setBio(0, 0);
-  } else if(queMillis(8000l, 11000l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 8000l, 0l, 70l, 3000l);
-    setBio(0, value);
-  } else if(queMillis(11000l, 14000l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 11000l, 0l, 70l, 3000l);
-    setBio(0, 70l - value);
-  } else if(queMillis(14000l, 17000l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 14000l, 0l, 70l, 3000l);
-    setBio(0, value);
-  } else if(queMillis(17000l, 20000l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 17000l, 0, 70l, 3000l);
-    setBio(0, 70l - value);
-  } else if(queMillis(20000l, 23000l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 20000l, 0l, 70l, 3000l);
-    setBio(0, value);
-  } else if(queMillis(23000l, 26000l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 23000l, 0l, 70l, 3000l);
-    setBio(0, 70l - value);
-  } else if(queMillis(26000l, 27000l)) {
-    setBio(0, 0);
-  } else if(queMillis(27000l, 28000l)) {
-    setBio(0, 70);
-  } else {
-    setBio(0, 0);
+  switch (sequence_no_[0]) {
+    case 0: {
+      setBio(0, 70);
+      if (now > 3000l) { sequence_no_[0]++; }
+      break;
+    } case 1: {
+      setBio(0, 0);
+      if (now > 5000l) { sequence_no_[0]++; }
+      break;
+    } case 2: {
+      setBio(0, 70);
+      if (now > 5500l) { sequence_no_[0]++; }
+      break;
+    } case 3: {
+      setBio(0, 0);
+      if (now > 8000l) { sequence_no_[0]++; }
+      break;
+    } case 4: {
+      int value = ease_in_cubicL(now - 8000l, 0l, 70l, 3000l);
+      setBio(0, value);
+      if (now > 11000l) { sequence_no_[0]++; }
+      break;
+    } case 5: {
+      int value = ease_in_cubicL(now - 11000l, 0l, 70l, 3000l);
+      setBio(0, 70l - value);
+      if (now > 14000l) { sequence_no_[0]++; }
+      break;
+    } case 6: {
+      int value = ease_in_cubicL(now - 14000l, 0l, 70l, 3000l);
+      setBio(0, value);
+      if (now > 17000l) { sequence_no_[0]++; }
+      break;
+    } case 7: {
+      int value = ease_in_cubicL(now - 17000l, 0l, 70l, 3000l);
+      setBio(0, 70l - value);
+      if (now > 20000l) { sequence_no_[0]++; }
+      break;
+    } case 8: {
+      int value = ease_in_cubicL(now - 20000l, 0l, 70l, 3000l);
+      setBio(0, value);
+      if (now > 23000l) { sequence_no_[0]++; }
+      break;
+    } case 9: {
+      int value = ease_in_cubicL(now - 23000l, 0l, 70l, 3000l);
+      setBio(0, 70l - value);
+      if (now > 26000l) { sequence_no_[0]++; }
+      break;
+    } case 10: {
+      setBio(0, 0);
+      if (now > 27000l) { sequence_no_[0]++; }
+      break;
+    } case 11: {
+      setBio(0, 70);
+      if (now > 28000l) { sequence_no_[0]++; }
+      break;
+    } default:
+      setBio(0, 0);
+      break;
   }
+
   // 1
-  if(queMillis(0l, 3000l)) {
-    setBio(1, 0);
-  } else if(queMillis(3000l, 3000l)) {
-    setBio(1, 0);
-  } else if(queMillis(4000l, 4500l)) {
-    setBio(1, 70);
-  } else if(queMillis(10000l, 14000l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 10000l, 0l, 70l, 4000l);
-    setBio(1, value);
-  } else if(queMillis(14000l, 18000l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 14000l, 0l, 70l, 4000l);
-    setBio(1, 70l - value);
-  } else if(queMillis(18000l, 22000l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 18000l, 0l, 70l, 4000l);
-    setBio(1, value);
-  } else if(queMillis(22000l, 26000l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 22000l, 0, 70l, 4000l);
-    setBio(1, 70l - value);
-  } else if(queMillis(26000l, 28000l)) {
-    setBio(1, 0);
-  } else if(queMillis(28000l, 30000l)) {
-    setBio(1, 70);
-  } else {
-    setBio(1, 0);
+  switch (sequence_no_[1]) {
+    case 0: {
+      setBio(1, 0);
+      if (now > 4000l) { sequence_no_[1]++; }
+      break;
+    } case 1: {
+      setBio(1, 70);
+      if (now > 4500l) { sequence_no_[1]++; }
+      break;
+    } case 2: {
+      setBio(1, 0);
+      if (now > 10000l) { sequence_no_[1]++; }
+      break;
+    } case 3: {
+      int value = ease_in_cubicL(now - 10000l, 0l, 70l, 4000l);
+      setBio(1, value);
+      if (now > 14000l) { sequence_no_[1]++; }
+      break;
+    } case 4: {
+      int value = ease_in_cubicL(now - 14000l, 0l, 70l, 4000l);
+      setBio(1, 70l - value);
+      if (now > 18000l) { sequence_no_[1]++; }
+      break;
+    } case 5: {
+      int value = ease_in_cubicL(now - 18000l, 0l, 70l, 4000l);
+      setBio(1, value);
+      if (now > 22000l) { sequence_no_[1]++; }
+      break;
+    } case 6: {
+      int value = ease_in_cubicL(now - 22000l, 0l, 70l, 4000l);
+      setBio(1, 70l - value);
+      if (now > 26000l) { sequence_no_[1]++; }
+      break;
+    } case 7: {
+      setBio(1, 0);
+      if (now > 28000l) { sequence_no_[1]++; }
+      break;
+    } case 8: {
+      setBio(1, 70);
+      if (now > 30000l) { sequence_no_[1]++; }
+      break;
+    } default:
+      setBio(1, 0);
+      break;
   }
+
   // 2
-  if(queMillis(0l, 3000l)) {
-    setBio(2, 0);
-  } else if(queMillis(3000l, 3000l)) {
-    setBio(2, 0);
-  } else if(queMillis(4500l, 5000l)) {
-    setBio(2, 70);
-  } else if(queMillis(12000l, 14500l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 12000l, 0l, 70l, 2000l);
-    setBio(2, value);
-  } else if(queMillis(14500l, 17000l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 14500l, 0l, 70l, 2000l);
-    setBio(2, 70l - value);
-  } else if(queMillis(17000l, 19500l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 17000l, 0l, 70l, 2000l);
-    setBio(2, value);
-  } else if(queMillis(19500l, 22000l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 19500l, 0l, 70l, 2000l);
-    setBio(2, 70l - value);
-  } else if(queMillis(22000l, 24500l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 22000l, 0l, 70l, 2000l);
-    setBio(2, value);
-  } else if(queMillis(24500l, 26000l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 24500l, 0l, 70l, 2000l);
-    setBio(2, 70l - value);
-  } else if(queMillis(26000l, 28000l)) {
-    setBio(2, 0);
-  } else if(queMillis(28000l, 30000l)) {
-    setBio(2, 70);
-  } else {
-    setBio(2, 0);
+  switch (sequence_no_[2]) {
+    case 0: {
+      setBio(2, 0);
+      if (now > 4500l) { sequence_no_[2]++; }
+      break;
+    } case 1: {
+      setBio(2, 70);
+      if (now > 5000l) { sequence_no_[2]++; }
+      break;
+    } case 2: {
+      setBio(2, 0);
+      if (now > 12000l) { sequence_no_[2]++; }
+      break;
+    } case 3: {
+      int value = ease_in_cubicL(now - 12000l, 0l, 70l, 2500l);
+      setBio(2, value);
+      if (now > 14500l) { sequence_no_[2]++; }
+      break;
+    } case 4: {
+      int value = ease_in_cubicL(now - 14500l, 0l, 70l, 2500l);
+      setBio(2, 70l - value);
+      if (now > 17000l) { sequence_no_[2]++; }
+      break;
+    } case 5: {
+      int value = ease_in_cubicL(now - 17000l, 0l, 70l, 2500l);
+      setBio(2, value);
+      if (now > 19500l) { sequence_no_[2]++; }
+      break;
+    } case 6: {
+      int value = ease_in_cubicL(now - 19500l, 0l, 70l, 2500l);
+      setBio(2, 70l - value);
+      if (now > 22000l) { sequence_no_[2]++; }
+      break;
+    } case 7: {
+      int value = ease_in_cubicL(now - 22000l, 0l, 70l, 2500l);
+      setBio(2, value);
+      if (now > 24500l) { sequence_no_[2]++; }
+      break;
+    } case 8: {
+      int value = ease_in_cubicL(now - 24500l, 0l, 70l, 1500l);
+      setBio(2, 70l - value);
+      if (now > 26000l) { sequence_no_[2]++; }
+      break;
+    } case 9: {
+      setBio(2, 0);
+      if (now > 28000l) { sequence_no_[2]++; }
+      break;
+    } case 10: {
+      setBio(2, 70);
+      if (now > 30000l) { sequence_no_[2]++; }
+      break;
+    } default:
+      setBio(2, 0);
+      break;
   }
+
   // 3
-  if(queMillis(0l, 3000l)) {
-    setBio(3, 70);
-  } else if(queMillis(3000l, 3000l)) {
-    setBio(3, 0);
-  } else if(queMillis(5000l, 5500l)) {
-    setBio(3, 70);
-  } else if(queMillis(14000l, 17500l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 14000l, 0l, 70l, 2000l);
-    setBio(3, value);
-  } else if(queMillis(17500l, 21000l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 17500l, 0l, 70l, 2000l);
-    setBio(3, 70l - value);
-  } else if(queMillis(21000l, 24500l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 21000l, 0l, 70l, 2000l);
-    setBio(3, value);
-  } else if(queMillis(24500l, 26000l)) {
-    int value = ease_in_cubicL(ticker_->ellapsedMillis() - 24500l, 0l, 70l, 2000l);
-    setBio(3, 70l - value);
-  } else if(queMillis(26000l, 27000l)) {
-    setBio(3, 0);
-  } else if(queMillis(27000l, 28000l)) {
-    setBio(3, 70);
-  } else {
-    setBio(3, 0);
+  switch (sequence_no_[3]) {
+    case 0: {
+      setBio(3, 0);
+      if (now > 5000l) { sequence_no_[3]++; }
+      break;
+    } case 1: {
+      setBio(3, 70);
+      if (now > 5500l) { sequence_no_[3]++; }
+      break;
+    } case 2: {
+      setBio(3, 0);
+      if (now > 14000l) { sequence_no_[3]++; }
+      break;
+    } case 3: {
+      int value = ease_in_cubicL(now - 14000l, 0l, 70l, 3500l);
+      setBio(3, value);
+      if (now > 17500l) { sequence_no_[3]++; }
+      break;
+    } case 4: {
+      int value = ease_in_cubicL(now - 17500l, 0l, 70l, 3500l);
+      setBio(3, 70l - value);
+      if (now > 21000l) { sequence_no_[3]++; }
+      break;
+    } case 5: {
+      int value = ease_in_cubicL(now - 21000l, 0l, 70l, 3500l);
+      setBio(3, value);
+      if (now > 24500l) { sequence_no_[3]++; }
+      break;
+    } case 6: {
+      int value = ease_in_cubicL(now - 24500l, 0l, 70l, 1500l);
+      setBio(3, 70l - value);
+      if (now > 26000l) { sequence_no_[3]++; }
+      break;
+    } case 7: {
+      setBio(3, 0);
+      if (now > 27000l) { sequence_no_[3]++; }
+      break;
+    } case 8: {
+      setBio(3, 70);
+      if (now > 28000l) { sequence_no_[3]++; }
+      break;
+    } default:
+      setBio(3, 0);
+      break;
   }
-}
-
-bool Scene::queMicros(long from, long to) {
-  long now = ticker_->ellapsedMicros() - start_time_;
-  if(from < now && now <= to) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-bool Scene::queMillis(long from, long to) {
-  long now = ticker_->ellapsedMillis() - start_time_ / 1000l;
-  if(from < now && now <= to) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-void Scene::setBio(int index, int value) {
-  biometals_->get(index)->setDeg(value, ticker_->deltaMicros());
 }

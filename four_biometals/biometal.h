@@ -5,16 +5,12 @@
 class Biometal {
  public:
   Biometal(int pin);
-  void setupBio();
-  void updateBio(long delta);
-  void setPwm(int value, long last_delta);
-  void setDeg(int deg_target, long last_delta);
-  long heatParam() {
-    return heat_param_;
-  }
-  int pwm() {
-    return pwm_;
-  }
+  void setup();
+  void update(long delta);
+  void setPwm(int value, long delta);
+  void setDeg(int deg_target, long delta);
+  long heatParam() { return heat_param_; }
+  int pwm() { return pwm_; }
 
  private:
   int pin_;
@@ -32,20 +28,20 @@ Biometal::Biometal(int pin) {
   pwm_ = 0;
 }
 
-void Biometal::setupBio() {
+void Biometal::setup() {
   pinMode(pin_, OUTPUT);
   analogWrite(pin_, OFF_VALUE);
 }
 
-void Biometal::updateBio(long delta) {
+void Biometal::update(long delta) {
   heat_param_ += long(pwm_ - pwm_keep_) * delta;
   if (heat_param_ < 0) {
     heat_param_ = 0;
   }
 }
 
-void Biometal::setPwm(int value, long last_delta) {
-  long estimate_heat_param = heat_param_ + long(value - pwm_keep_) * last_delta;
+void Biometal::setPwm(int value, long delta) {
+  long estimate_heat_param = heat_param_ + long(value - pwm_keep_) * delta;
   if (estimate_heat_param > heat_param_limit_) {
     pwm_ = pwm_keep_;
   } else {
@@ -54,13 +50,10 @@ void Biometal::setPwm(int value, long last_delta) {
   analogWrite(pin_, 255 - pwm_);
 }
 
-void Biometal::setDeg(int deg_target, long last_delta) {
+void Biometal::setDeg(int deg_target, long delta) {
   int deg = int(heat_param_ / (1000l * 255l));
   int deg_delta = deg_target - deg;
   int pwm = map(deg_delta, 5, 70, pwm_keep_, 550);
-  pwm = constrain(int(pwm), 0, 255);
-  setPwm(pwm, last_delta);
+  pwm = constrain(pwm, 0, 255);
+  setPwm(pwm, delta);
 }
-
-
-

@@ -27,5 +27,6 @@ void loop() {
   int sensor = analogRead(2);
   if (sensor > 500) {
      TICKER->reset();
+     SCENE->reset();
   }
 }

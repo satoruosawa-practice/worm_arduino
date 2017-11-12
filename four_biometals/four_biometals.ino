@@ -12,22 +12,21 @@ Scene * SCENE = new Scene(*TICKER, *BIOMETAL_CONTAINER);
 void setup() {
   pinMode(RELAY_PIN, OUTPUT);
   digitalWrite(RELAY_PIN, LOW);
-  BIOMETAL_CONTAINER->setupBio();
-//  Serial.begin(115200);
- 
+  BIOMETAL_CONTAINER->setup();
+  Serial.begin(115200);
+
   delay(50);
   digitalWrite(RELAY_PIN, HIGH);
-  TICKER->setupTicker();
+  TICKER->reset();
 }
 
 void loop() {
-  TICKER->updateTicker();
-  BIOMETAL_CONTAINER->updateBio(TICKER->deltaMicros());
+  TICKER->update();
+  BIOMETAL_CONTAINER->update(TICKER->deltaMicros());
   SCENE->sequence();
-
   int sensor = analogRead(2);
   if (sensor > 500) {
-     TICKER->setupTicker();
+     TICKER->reset();
+     SCENE->reset();
   }
 }
-
