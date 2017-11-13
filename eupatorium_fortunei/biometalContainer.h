@@ -1,6 +1,7 @@
 #pragma once
 #include "Arduino.h"
 #include "biometal.h"
+#include "soundBiometalUno.h"
 
 class BiometalContainer {
  public:
@@ -19,9 +20,9 @@ class BiometalContainer {
 };
 
 BiometalContainer::BiometalContainer() {
-  biometals_[0] = new Biometal(6);
+  biometals_[0] = (Biometal *)(new SoundBiometalUno(3));
   biometals_[1] = new Biometal(10);
-  biometals_[2] = new Biometal(3);
+  biometals_[2] = new Biometal(6);
   biometals_[3] = new Biometal(5);
 }
 

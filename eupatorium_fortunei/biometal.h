@@ -12,7 +12,7 @@ class Biometal {
   long heatParam() { return heat_param_; }
   int pwm() { return pwm_; }
 
- private:
+ protected:
   int pin_;
   long heat_param_;
   long heat_param_limit_;

@@ -12,6 +12,8 @@ Scene * SCENE = new Scene(*TICKER, *BIOMETAL_CONTAINER);
 void setup() {
   pinMode(RELAY_PIN, OUTPUT);
   digitalWrite(RELAY_PIN, LOW);
+  TCCR2B &= B11110111;
+  TCCR2B |= B00001000;  // WGM22, 21, 20 = 101
   BIOMETAL_CONTAINER->setup();
   Serial.begin(115200);
 
