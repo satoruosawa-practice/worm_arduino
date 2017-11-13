@@ -31,39 +31,67 @@ void SoundBiometalUno::setPwm(int value, long delta) {
     unsigned int max_value = OCR2A;
     unsigned int out = max_value - (unsigned int)((float)max_value * (float)value / 255.0f);
     analogWrite(pin_, out);
-  }
+  } else if (pin_ == 10) {
+    unsigned int max_value = OCR1A;
+    unsigned int out = max_value - (unsigned int)((float)max_value * (float)value / 255.0f);
+    analogWrite(pin_, out);
+  } 
 }
 
 void SoundBiometalUno::setFreq(long freq) {
-  if (pin_ != 3) return;  // あとで作成!!!
-  long value = 8000000l / freq;
-  if(value < 256l) {
-    TCCR2B &= B11111000;
-    TCCR2B |= B00000001;
-    OCR2A = (unsigned int)(value);
-  } else if (value / 8l < 256l) {
-    TCCR2B &= B11111000;
-    TCCR2B |= B00000010;
-    OCR2A = (unsigned int)(value / 8l);
-  } else if (value / 32l < 256l) {
-    TCCR2B &= B11111000;
-    TCCR2B |= B00000011;
-    OCR2A = (unsigned int)(value / 32l);
-  } else if (value / 64l < 256l) {
-    TCCR2B &= B11111000;
-    TCCR2B |= B00000100;
-    OCR2A = (unsigned int)(value / 64l);
-  } else if (value / 128l < 256l) {
-    TCCR2B &= B11111000;
-    TCCR2B |= B00000101;
-    OCR2A = (unsigned int)(value / 128l);
-  } else if (value / 256l < 256l) {
-    TCCR2B &= B11111000;
-    TCCR2B |= B00000110;
-    OCR2A = (unsigned int)(value / 256l);
-  } else if (value / 1024l < 256l) {
-    TCCR2B &= B11111000;
-    TCCR2B |= B00000111;
-    OCR2A = (unsigned int)(value / 1024l);
+  if (pin_ == 3) {
+    long value = 8000000l / freq;
+    if(value < 256l) {
+      TCCR2B &= B11111000;
+      TCCR2B |= B00000001;
+      OCR2A = (unsigned int)(value);
+    } else if (value / 8l < 256l) {
+      TCCR2B &= B11111000;
+      TCCR2B |= B00000010;
+      OCR2A = (unsigned int)(value / 8l);
+    } else if (value / 32l < 256l) {
+      TCCR2B &= B11111000;
+      TCCR2B |= B00000011;
+      OCR2A = (unsigned int)(value / 32l);
+    } else if (value / 64l < 256l) {
+      TCCR2B &= B11111000;
+      TCCR2B |= B00000100;
+      OCR2A = (unsigned int)(value / 64l);
+    } else if (value / 128l < 256l) {
+      TCCR2B &= B11111000;
+      TCCR2B |= B00000101;
+      OCR2A = (unsigned int)(value / 128l);
+    } else if (value / 256l < 256l) {
+      TCCR2B &= B11111000;
+      TCCR2B |= B00000110;
+      OCR2A = (unsigned int)(value / 256l);
+    } else if (value / 1024l < 256l) {
+      TCCR2B &= B11111000;
+      TCCR2B |= B00000111;
+      OCR2A = (unsigned int)(value / 1024l);
+    }
+  } else if (pin_ == 10) {
+    long value = 8000000l / freq;
+    if(value < 256l) {
+      TCCR1B &= B11111000;
+      TCCR1B |= B00000001;
+      OCR1A = (unsigned int)(value);
+    } else if (value / 8l < 256l) {
+      TCCR1B &= B11111000;
+      TCCR1B |= B00000010;
+      OCR1A = (unsigned int)(value / 8l);
+    } else if (value / 64l < 256l) {
+      TCCR1B &= B11111000;
+      TCCR1B |= B00000011;
+      OCR1A = (unsigned int)(value / 64l);
+    } else if (value / 256l < 256l) {
+      TCCR1B &= B11111000;
+      TCCR1B |= B00000100;
+      OCR1A = (unsigned int)(value / 256l);
+    } else if (value / 1024l < 256l) {
+      TCCR1B &= B11111000;
+      TCCR1B |= B00000101;
+      OCR1A = (unsigned int)(value / 1024l);
+    }
   }
 }

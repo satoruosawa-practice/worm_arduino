@@ -41,24 +41,44 @@ void Scene::reset() {
 void Scene::sequence() {
   long now = ticker_->ellapsedMillis();
   // 0
-  switch (sequence_no_[0]) {
+   switch (sequence_no_[0]) {
+     case 0: {
+       setBioFreq(0, 262l, 70);
+       if (now > 1000l) { sequence_no_[0]++; }
+       break;
+     } case 1: {
+       setBioFreq(0, 262l, 0);
+       if (now > 2000l) { sequence_no_[0]++; }
+       break;
+     } case 2: {
+       setBioFreq(0, 277l, 70);
+       if (now > 3000l) { sequence_no_[0]++; }
+       break;
+     } default:
+       setBioFreq(0, 0, 0);
+       break;
+   }
+
+   // 1
+  switch (sequence_no_[1]) {
     case 0: {
-      setBioFreq(0, 262l, 70);
-      if (now > 1000l) { sequence_no_[0]++; }
+      setBioFreq(1, 262l, 0);
+      if (now > 1000l) { sequence_no_[1]++; }
       break;
     } case 1: {
-      setBioFreq(0, 277l, 70);
-      if (now > 2000l) { sequence_no_[0]++; }
+      setBioFreq(1, 262l, 70);
+      if (now > 2000l) { sequence_no_[1]++; }
+      break;
+    } case 2: {
+      setBioFreq(1, 277l, 0);
+      if (now > 3000l) { sequence_no_[1]++; }
+      break;
+    } case 3: {
+      setBioFreq(1, 277l, 70);
+      if (now > 4000l) { sequence_no_[1]++; }
       break;
     } default:
-      setBioFreq(0, 262l, 0);
-      break;
-  }
-
-  // 1
-  switch (sequence_no_[1]) {
-     default:
-      setBio(1, 0);
+      setBioFreq(1, 0, 0);
       break;
   }
 
