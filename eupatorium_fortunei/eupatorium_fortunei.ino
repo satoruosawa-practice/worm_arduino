@@ -15,8 +15,10 @@ void setup() {
   digitalWrite(RELAY_PIN, LOW);
   TCCR2B &= B11110111;
   TCCR2B |= B00001000;  // WGM22, 21, 20 = 101
+  TCCR1A &= B11011111;
+  TCCR1A |= B00100000;
   TCCR1B &= B11101111;
-  TCCR1B |= B00010000;
+  TCCR1B |= B00010000;  // WGM13, 12, 11, 10 = 1001
   BIOMETAL_CONTAINER->setup();
   delay(50);
   digitalWrite(RELAY_PIN, HIGH);
@@ -24,6 +26,7 @@ void setup() {
 }
 
 void loop() {
+  
   TICKER->update();
   BIOMETAL_CONTAINER->update(TICKER->deltaMicros());
   SCENE->sequence();

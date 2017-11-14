@@ -43,7 +43,7 @@ void Scene::sequence() {
   // 0
    switch (sequence_no_[0]) {
      case 0: {
-       setBioFreq(0, 262l, 70);
+       setBioFreq(0, 262l, 50);
        if (now > 1000l) { sequence_no_[0]++; }
        break;
      } case 1: {
@@ -51,11 +51,11 @@ void Scene::sequence() {
        if (now > 2000l) { sequence_no_[0]++; }
        break;
      } case 2: {
-       setBioFreq(0, 277l, 70);
+       setBioFreq(0, 277l, 50);
        if (now > 3000l) { sequence_no_[0]++; }
        break;
      } default:
-       setBioFreq(0, 0, 0);
+       setBioFreq(0, 500l, 0);
        break;
    }
 
@@ -66,7 +66,7 @@ void Scene::sequence() {
       if (now > 1000l) { sequence_no_[1]++; }
       break;
     } case 1: {
-      setBioFreq(1, 262l, 70);
+      setBioFreq(1, 262l, 50);
       if (now > 2000l) { sequence_no_[1]++; }
       break;
     } case 2: {
@@ -74,11 +74,11 @@ void Scene::sequence() {
       if (now > 3000l) { sequence_no_[1]++; }
       break;
     } case 3: {
-      setBioFreq(1, 277l, 70);
+      setBioFreq(1, 277l, 50);
       if (now > 4000l) { sequence_no_[1]++; }
       break;
     } default:
-      setBioFreq(1, 0, 0);
+      setBioFreq(1, 500l, 0);
       break;
   }
 
