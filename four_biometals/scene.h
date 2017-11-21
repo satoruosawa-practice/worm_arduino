@@ -38,58 +38,148 @@ void Scene::sequence() {
   // 0
   switch (sequence_no_[0]) {
     case 0: {
-      setBio(0, 70);
-      if (now > 3000l) { sequence_no_[0]++; }
+      setBio(0, 0);
+      if (now > 2500l) { sequence_no_[0]++; }
       break;
     } case 1: {
-      setBio(0, 0);
-      if (now > 5000l) { sequence_no_[0]++; }
+      setBio(0, 70);
+      if (now > 2700l) { sequence_no_[0]++; }
       break;
     } case 2: {
-      setBio(0, 70);
-      if (now > 5500l) { sequence_no_[0]++; }
+      setBio(0, 0);
+      if (now > 7750l) { sequence_no_[0]++; }
       break;
     } case 3: {
-      setBio(0, 0);
+      setBio(0, 70);
       if (now > 8000l) { sequence_no_[0]++; }
       break;
     } case 4: {
-      int value = ease_in_cubicL(now - 8000l, 0l, 70l, 3000l);
-      setBio(0, value);
-      if (now > 11000l) { sequence_no_[0]++; }
+      setBio(0, 0);
+      if (now > 12750l) { sequence_no_[0]++; }
       break;
     } case 5: {
-      int value = ease_in_cubicL(now - 11000l, 0l, 70l, 3000l);
-      setBio(0, 70l - value);
-      if (now > 14000l) { sequence_no_[0]++; }
+      setBio(0, 70);
+      if (now > 13000l) { sequence_no_[0]++; }
       break;
     } case 6: {
-      int value = ease_in_cubicL(now - 14000l, 0l, 70l, 3000l);
-      setBio(0, value);
-      if (now > 17000l) { sequence_no_[0]++; }
+      setBio(0, 0);
+      if (now > 17750l) { sequence_no_[0]++; }
       break;
     } case 7: {
-      int value = ease_in_cubicL(now - 17000l, 0l, 70l, 3000l);
-      setBio(0, 70l - value);
-      if (now > 20000l) { sequence_no_[0]++; }
+      setBio(0, 70);
+      if (now > 18000l) { sequence_no_[0]++; }
       break;
     } case 8: {
-      int value = ease_in_cubicL(now - 20000l, 0l, 70l, 3000l);
-      setBio(0, value);
-      if (now > 23000l) { sequence_no_[0]++; }
+      setBio(0, 0);
+      if (now > 22750l) { sequence_no_[0]++; }
       break;
     } case 9: {
-      int value = ease_in_cubicL(now - 23000l, 0l, 70l, 3000l);
-      setBio(0, 70l - value);
-      if (now > 26000l) { sequence_no_[0]++; }
+      setBio(0, 70);
+      if (now > 23000l) { sequence_no_[0]++; }
       break;
     } case 10: {
       setBio(0, 0);
-      if (now > 27000l) { sequence_no_[0]++; }
+      if (now > 27750l) { sequence_no_[0]++; }
       break;
     } case 11: {
       setBio(0, 70);
       if (now > 28000l) { sequence_no_[0]++; }
+      break;
+    } case 12: {
+      setBio(0, 0);
+      if (now > 32750l) { sequence_no_[0]++; }
+      break;
+    } case 13: {
+      setBio(0, 70);
+      if (now > 33000l) { sequence_no_[0]++; }
+      break;
+    } case 14: {
+      setBio(0, 0);
+      if (now > 37750l) { sequence_no_[0]++; }
+      break;
+    } case 15: {
+      setBio(0, 70);
+      if (now > 38000l) { sequence_no_[0]++; }
+      break;
+    } case 16: {
+      setBio(0, 0);
+      if (now > 42750l) { sequence_no_[0]++; }
+      break;
+    } case 17: {
+      setBio(0, 70);
+      if (now > 43000l) { sequence_no_[0]++; }
+      break;
+    } case 18: {
+      setBio(0, 0);
+      if (now > 47750l) { sequence_no_[0]++; }
+      break;
+    } case 19: {
+      setBio(0, 70);
+      if (now > 48000l) { sequence_no_[0]++; }
+      break;
+    } case 20: {
+      setBio(0, 0);
+      if (now > 52750l) { sequence_no_[0]++; }
+      break;
+    } case 21: {
+      setBio(0, 70);
+      if (now > 53000l) { sequence_no_[0]++; }
+      break;
+    } case 22: {
+      setBio(0, 0);
+      if (now > 57750l) { sequence_no_[0]++; }
+      break;
+    } case 23: {
+      setBio(0, 70);
+      if (now > 58000l) { sequence_no_[0]++; }
+      break;
+    } case 24: {
+      setBio(0, 0);
+      if (now > 62750l) { sequence_no_[0]++; }
+      break;
+    } case 25: {
+      setBio(0, 70);
+      if (now > 63000l) { sequence_no_[0]++; }
+      break;
+    } case 26: {
+      setBio(0, 0);
+      if (now > 67750l) { sequence_no_[0]++; }
+      break;
+    } case 27: {
+      setBio(0, 70);
+      if (now > 68000l) { sequence_no_[0]++; }
+      break;
+    } case 28: {
+      setBio(0, 0);
+      if (now > 72750l) { sequence_no_[0]++; }
+      break;
+    } case 29: {
+      setBio(0, 70);
+      if (now > 73000l) { sequence_no_[0]++; }
+      break;
+    } case 30: {
+      setBio(0, 0);
+      if (now > 77750l) { sequence_no_[0]++; }
+      break;
+    } case 31: {
+      setBio(0, 70);
+      if (now > 78000l) { sequence_no_[0]++; }
+      break;
+    } case 32: {
+      setBio(0, 0);
+      if (now > 82750l) { sequence_no_[0]++; }
+      break;
+    } case 33: {
+      setBio(0, 70);
+      if (now > 83000l) { sequence_no_[0]++; }
+      break;
+    } case 34: {
+      setBio(0, 0);
+      if (now > 87750l) { sequence_no_[0]++; }
+      break;
+    } case 35: {
+      setBio(0, 70);
+      if (now > 88000l) { sequence_no_[0]++; }
       break;
     } default:
       setBio(0, 0);
@@ -97,46 +187,14 @@ void Scene::sequence() {
   }
 
   // 1
-  switch (sequence_no_[1]) {
+  switch (sequence_no_[1] % 2) {
     case 0: {
       setBio(1, 0);
-      if (now > 4000l) { sequence_no_[1]++; }
+      if (now > 750l + long(sequence_no_[1]) * 750l) { sequence_no_[1]++; }
       break;
     } case 1: {
       setBio(1, 70);
-      if (now > 4500l) { sequence_no_[1]++; }
-      break;
-    } case 2: {
-      setBio(1, 0);
-      if (now > 10000l) { sequence_no_[1]++; }
-      break;
-    } case 3: {
-      int value = ease_in_cubicL(now - 10000l, 0l, 70l, 4000l);
-      setBio(1, value);
-      if (now > 14000l) { sequence_no_[1]++; }
-      break;
-    } case 4: {
-      int value = ease_in_cubicL(now - 14000l, 0l, 70l, 4000l);
-      setBio(1, 70l - value);
-      if (now > 18000l) { sequence_no_[1]++; }
-      break;
-    } case 5: {
-      int value = ease_in_cubicL(now - 18000l, 0l, 70l, 4000l);
-      setBio(1, value);
-      if (now > 22000l) { sequence_no_[1]++; }
-      break;
-    } case 6: {
-      int value = ease_in_cubicL(now - 22000l, 0l, 70l, 4000l);
-      setBio(1, 70l - value);
-      if (now > 26000l) { sequence_no_[1]++; }
-      break;
-    } case 7: {
-      setBio(1, 0);
-      if (now > 28000l) { sequence_no_[1]++; }
-      break;
-    } case 8: {
-      setBio(1, 70);
-      if (now > 30000l) { sequence_no_[1]++; }
+      if (now > 800l + long(sequence_no_[1] - 1) * 750l) { sequence_no_[1]++; }
       break;
     } default:
       setBio(1, 0);
@@ -144,106 +202,42 @@ void Scene::sequence() {
   }
 
   // 2
-  switch (sequence_no_[2]) {
+  switch (sequence_no_[2] % 2) {
     case 0: {
-      setBio(2, 0);
-      if (now > 4500l) { sequence_no_[2]++; }
+      setBio(2, 70);
+      if (now > 200l + long(sequence_no_[2]) * 2000l) { sequence_no_[2]++; }
       break;
     } case 1: {
-      setBio(2, 70);
-      if (now > 5000l) { sequence_no_[2]++; }
-      break;
-    } case 2: {
       setBio(2, 0);
-      if (now > 12000l) { sequence_no_[2]++; }
-      break;
-    } case 3: {
-      int value = ease_in_cubicL(now - 12000l, 0l, 70l, 2500l);
-      setBio(2, value);
-      if (now > 14500l) { sequence_no_[2]++; }
-      break;
-    } case 4: {
-      int value = ease_in_cubicL(now - 14500l, 0l, 70l, 2500l);
-      setBio(2, 70l - value);
-      if (now > 17000l) { sequence_no_[2]++; }
-      break;
-    } case 5: {
-      int value = ease_in_cubicL(now - 17000l, 0l, 70l, 2500l);
-      setBio(2, value);
-      if (now > 19500l) { sequence_no_[2]++; }
-      break;
-    } case 6: {
-      int value = ease_in_cubicL(now - 19500l, 0l, 70l, 2500l);
-      setBio(2, 70l - value);
-      if (now > 22000l) { sequence_no_[2]++; }
-      break;
-    } case 7: {
-      int value = ease_in_cubicL(now - 22000l, 0l, 70l, 2500l);
-      setBio(2, value);
-      if (now > 24500l) { sequence_no_[2]++; }
-      break;
-    } case 8: {
-      int value = ease_in_cubicL(now - 24500l, 0l, 70l, 1500l);
-      setBio(2, 70l - value);
-      if (now > 26000l) { sequence_no_[2]++; }
-      break;
-    } case 9: {
-      setBio(2, 0);
-      if (now > 28000l) { sequence_no_[2]++; }
-      break;
-    } case 10: {
-      setBio(2, 70);
-      if (now > 30000l) { sequence_no_[2]++; }
+      if (now > 4000l + long(sequence_no_[2] - 1) * 2000l) { sequence_no_[2]++; }
       break;
     } default:
       setBio(2, 0);
       break;
   }
 
-  // 3
-  switch (sequence_no_[3]) {
-    case 0: {
-      setBio(3, 0);
-      if (now > 5000l) { sequence_no_[3]++; }
-      break;
-    } case 1: {
-      setBio(3, 70);
-      if (now > 5500l) { sequence_no_[3]++; }
-      break;
-    } case 2: {
-      setBio(3, 0);
-      if (now > 14000l) { sequence_no_[3]++; }
-      break;
-    } case 3: {
-      int value = ease_in_cubicL(now - 14000l, 0l, 70l, 3500l);
-      setBio(3, value);
-      if (now > 17500l) { sequence_no_[3]++; }
-      break;
-    } case 4: {
-      int value = ease_in_cubicL(now - 17500l, 0l, 70l, 3500l);
-      setBio(3, 70l - value);
-      if (now > 21000l) { sequence_no_[3]++; }
-      break;
-    } case 5: {
-      int value = ease_in_cubicL(now - 21000l, 0l, 70l, 3500l);
-      setBio(3, value);
-      if (now > 24500l) { sequence_no_[3]++; }
-      break;
-    } case 6: {
-      int value = ease_in_cubicL(now - 24500l, 0l, 70l, 1500l);
-      setBio(3, 70l - value);
-      if (now > 26000l) { sequence_no_[3]++; }
-      break;
-    } case 7: {
-      setBio(3, 0);
-      if (now > 27000l) { sequence_no_[3]++; }
-      break;
-    } case 8: {
-      setBio(3, 70);
-      if (now > 28000l) { sequence_no_[3]++; }
-      break;
-    } default:
-      setBio(3, 0);
-      break;
-  }
+   // 3
+   switch (sequence_no_[3] % 4) {
+     case 0: {
+       int value = ease_in_cubicL(now - long(sequence_no_[3]) * 1250l, 0l, 70l, 200l);
+       setBio(3, value);
+       if (now > 200l + long(sequence_no_[3]) * 1250l) { sequence_no_[3]++; }
+       break;
+     } case 1: {
+       setBio(3, 0);
+       if (now > 500l + long(sequence_no_[3] - 1) * 1250l) { sequence_no_[3]++; }
+       break;
+     } case 2: {
+       int value = ease_in_cubicL(now - 500l - long(sequence_no_[3] - 2) * 1250l, 0l, 70l, 500l);
+       setBio(3, value);
+       if (now > 1500l + long(sequence_no_[3] - 2) * 1250l) { sequence_no_[3]++; }
+       break;
+     } case 3: {
+       setBio(3, 0);
+       if (now > 5000l + long(sequence_no_[3] - 3) * 1250l) { sequence_no_[3]++; }
+       break;
+     } default:
+       setBio(3, 0);
+       break;
+   }
 }
